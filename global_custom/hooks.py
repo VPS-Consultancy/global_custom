@@ -172,4 +172,7 @@ user_data_fields = [
 # auth_hooks = [
 # 	"global_custom.auth.validate"
 # ]
-
+doctype_js = {
+    "Purchase Order": "custom/js/purchase_order.js"
+}
+after_install = "global_custom.custom.python.purchase_order.make_custom_fields"
