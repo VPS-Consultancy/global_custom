@@ -29,3 +29,6 @@ cur_frm.cscript.item_code = function (frm, cdt, cdn) {
       })
     }
   }
+frappe.ui.form.on('Purchase Order Itemwise Rate Details', 'po_itemwise_rate_details_add', function(frm){
+  cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
+});
