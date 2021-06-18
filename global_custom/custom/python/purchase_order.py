@@ -28,10 +28,13 @@ def fetch_rate_details(item_code):
         if frappe.db.get_value('Purchase Order', row.parent,'docstatus'):
             po_doc = frappe.get_doc('Purchase Order', row.parent)
             rate_details.append(
-                {'date': po_doc.transaction_date,
+                {
+                'purchase_order': row.parent,
+                'date': po_doc.transaction_date,
                 'supplier': po_doc.supplier, 
                 'rate': row.rate}
             )
-        if doc_count == 3:
+            doc_count += 1
+        if doc_count == 5:
             break
     return rate_details
