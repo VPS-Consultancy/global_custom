@@ -5,6 +5,7 @@ cur_frm.cscript.item_code = function (frm, cdt, cdn) {
       cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
     }
     if(d.item_code){
+      cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 0);
       frappe.call({
         method: "global_custom.custom.python.purchase_order.fetch_rate_details",
         args: {
