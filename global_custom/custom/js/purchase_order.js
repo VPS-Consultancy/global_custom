@@ -2,7 +2,7 @@ cur_frm.cscript.item_code = function (frm, cdt, cdn) {
     var d = locals[cdt][cdn]
     const set_fields = ['rate','date','supplier','purchase_order'];
     if(!d.item_code){
-      frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
+      cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
     }
     if(d.item_code){
       frappe.call({
