@@ -30,8 +30,8 @@ cur_frm.cscript.item_code = function (frm, cdt, cdn) {
     }
   }
 
-frappe.ui.form.on('Purchase Order Itemwise Rate Details', {
-	po_itemwise_rate_details_add: function(frm){
+frappe.ui.form.on('Purchase Order Item', {
+	items_add: function(frm){
     console.log('Add row clicked')
 		frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
 	}
