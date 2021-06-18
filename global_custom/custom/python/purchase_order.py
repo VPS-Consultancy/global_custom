@@ -25,7 +25,7 @@ def fetch_rate_details(item_code):
     rate_details = []
     po_details = frappe.get_all('Purchase Order Item',['rate','parent'],{'item_code':item_code,'parenttype':'Purchase Order'},order_by="modified")
     for row in po_details[::-1]:
-        if frappe.db.get_value('Purchase Order', row.parent,'docstatus'):
+        if frappe.db.get_value('Purchase Order', row.parent,'docstatus') == 1:
             po_doc = frappe.get_doc('Purchase Order', row.parent)
             rate_details.append(
                 {
