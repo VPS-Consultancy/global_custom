@@ -45,7 +45,7 @@ frappe.ui.form.on('Rate Identifier', {
 		else{
 			refresh_field('purchase_order_itemwise_rate_details');
 			refresh_field('sales_invoice_itemwise_rate_details');
-			frappe.throw(_('Kindly select date and item to fetch rate details'))
+			frappe.throw(__('Kindly select date and item to fetch rate details'))
 		}
 	}
 });
