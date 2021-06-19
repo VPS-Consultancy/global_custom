@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate
 
 class RateIdentifier(Document):
 	pass
@@ -18,7 +19,7 @@ def fetch_rate_details(date, item):
     for row in po_details[::-1]:
         if frappe.db.get_value('Purchase Order', row.parent,'docstatus') == 1:
             po_doc = frappe.get_doc('Purchase Order', row.parent)
-            if po_doc.transaction_date == date:
+            if po_doc.transaction_date == getdate(date):
                 po_rate_details.append(
                     {
                     'purchase_order': row.parent,
@@ -33,7 +34,7 @@ def fetch_rate_details(date, item):
     for row in si_details[::-1]:
         if frappe.db.get_value('Sales Invoice', row.parent,'docstatus') == 1:
             si_doc = frappe.get_doc('Sales Invoice', row.parent)
-            if si_doc.posting_date == date:
+            if si_doc.posting_date == getdate(date):
                 si_rate_details.append(
                     {
                     'sales_invoice': row.parent,
