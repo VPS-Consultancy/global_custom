@@ -6,7 +6,7 @@ frappe.ui.form.on('Rate Identifier Settings', {
 		frm.clear_table('purchase_order_itemwise_rate_details');
 		frm.clear_table('sales_invoice_itemwise_rate_details');
 		const po_set_fields = ['rate','date','supplier','purchase_order'];
-		const si_set_fields = ['rate','date','supplier','sales_invoice'];
+		const si_set_fields = ['rate','date','customer','sales_invoice'];
 		if(frm.doc.item && frm.doc.date){
 			frappe.call({
 			method: "global_custom.global_custom.doctype.rate_identifier_settings.rate_identifier_settings.fetch_rate_details",
