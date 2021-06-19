@@ -16,6 +16,7 @@ frappe.ui.form.on('Rate Identifier', {
 			},
 			freeze: true,
 			callback: function (r) {
+				console.log(r.message);
 				if(r.message) {
 					cur_frm.set_value('purchase_order_itemwise_rate_details', []);
 					$.each(r.message[0], function(i, d) {
@@ -36,10 +37,15 @@ frappe.ui.form.on('Rate Identifier', {
 						}
 					});
 				}
+				refresh_field('purchase_order_itemwise_rate_details');
+				refresh_field('sales_invoice_itemwise_rate_details');
 			}
 		})
 		}
-		refresh_field('purchase_order_itemwise_rate_details');
-		refresh_field('sales_invoice_itemwise_rate_details');
+		else{
+			refresh_field('purchase_order_itemwise_rate_details');
+			refresh_field('sales_invoice_itemwise_rate_details');
+			frappe.throw(_('Kindly select date and item to fetch rate details'))
+		}
 	}
 });
