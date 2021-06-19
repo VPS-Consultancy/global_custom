@@ -19,6 +19,7 @@ def fetch_rate_details(date, item):
     for row in po_details[::-1]:
         if frappe.db.get_value('Purchase Order', row.parent,'docstatus') == 1:
             po_doc = frappe.get_doc('Purchase Order', row.parent)
+            frappe.log_error(f'{getdate(date)}, {po_doc.transaction_date}')
             if po_doc.transaction_date == getdate(date):
                 po_rate_details.append(
                     {
