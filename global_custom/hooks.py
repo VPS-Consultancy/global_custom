@@ -173,6 +173,9 @@ user_data_fields = [
 # 	"global_custom.auth.validate"
 # ]
 doctype_js = {
-    "Purchase Order": "custom/js/purchase_order.js"
+    "Purchase Order": "custom/js/purchase_order.js",
+	"Sales Invoice": "custom/js/sales_invoice.js"
+
 }
-after_install = "global_custom.custom.python.purchase_order.make_custom_fields"
+after_install = "global_custom.custom.python.purchase_order.make_custom_fields",
+after_install = "global_custom.custom.python.sales_invoice.make_custom_fields"
