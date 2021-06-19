@@ -16,7 +16,6 @@ frappe.ui.form.on('Rate Identifier Settings', {
 			},
 			freeze: true,
 			callback: function (r) {
-				console.log(r.message);
 				if(r.message) {
 					cur_frm.set_value('purchase_order_itemwise_rate_details', []);
 					$.each(r.message[0], function(i, d) {
