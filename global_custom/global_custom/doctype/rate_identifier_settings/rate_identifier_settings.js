@@ -9,7 +9,7 @@ frappe.ui.form.on('Rate Identifier Settings', {
 		const si_set_fields = ['rate','date','supplier','sales_invoice'];
 		if(frm.doc.item && frm.doc.date){
 			frappe.call({
-			method: "global_custom.global_custom.doctype.rate_identifier.rate_identifier.fetch_rate_details",
+			method: "global_custom.global_custom.doctype.rate_identifier_settings.rate_identifier_settings.fetch_rate_details",
 			args: {
 				item:frm.doc.item,
 				date:frm.doc.date
