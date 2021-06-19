@@ -2,44 +2,44 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Rate Identifier', {
-	refresh: function(frm) {
-		cur_frm.cscript.item_code = function (frm, cdt, cdn) {
-			var d = locals[cdt][cdn]
-			const set_fields = ['rate','date','supplier','purchase_order'];
-			if(!d.item_code){
-			  cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
-			}
-			if(d.item_code){
-			  cur_frm.set_df_property('po_itemwise_rate_details', 'hidden', 0);
-			  frappe.call({
-				method: "global_custom.custom.python.purchase_order.fetch_rate_details",
-				args: {
-				  item_code: d.item_code
-				},
-				freeze: true,
-				callback: function (r) {
-					if(r.message) {
-						cur_frm.set_value('po_itemwise_rate_details', []);
-						$.each(r.message, function(i, d) {
-							var row = cur_frm.add_child('po_itemwise_rate_details');
-							for (let key in d) {
-								if (d[key] && in_list(set_fields, key)) {
-									row[key] = d[key];
-								}
+	get_rate: function(frm) {
+		frm.clear_table('purchase_order_itemwise_rate_details');
+		frm.clear_table('sales_invoice_itemwise_rate_details');
+		const po_set_fields = ['rate','date','supplier','purchase_order'];
+		const si_set_fields = ['rate','date','supplier','sales_invoice'];
+		if(frm.doc.item && frm.doc.date){
+			frappe.call({
+			method: "global_custom.global_custom.doctype.rate_identifier.rate_identifier.fetch_rate_details",
+			args: {
+				item:frm.doc.item,
+				date:frm.doc.date
+			},
+			freeze: true,
+			callback: function (r) {
+				if(r.message) {
+					cur_frm.set_value('purchase_order_itemwise_rate_details', []);
+					$.each(r.message[0], function(i, d) {
+						var row = cur_frm.add_child('purchase_order_itemwise_rate_details');
+						for (let key in d) {
+							if (d[key] && in_list(po_set_fields, key)) {
+								row[key] = d[key];
 							}
-						});
-					}
-					refresh_field('po_itemwise_rate_details');
+						}
+					});
+					cur_frm.set_value('sales_invoice_itemwise_rate_details', []);
+					$.each(r.message[1], function(i, d) {
+						var row = cur_frm.add_child('sales_invoice_itemwise_rate_details');
+						for (let key in d) {
+							if (d[key] && in_list(si_set_fields, key)) {
+								row[key] = d[key];
+							}
+						}
+					});
 				}
-			  })
 			}
-		  }
-		
-		frappe.ui.form.on('Purchase Order Item', {
-			items_add: function(frm){
-			console.log('Add row clicked')
-				frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
-			}
-		});
+		})
+		}
+		refresh_field('purchase_order_itemwise_rate_details');
+		refresh_field('sales_invoice_itemwise_rate_details');
 	}
 });
