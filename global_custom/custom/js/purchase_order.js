@@ -1,4 +1,8 @@
-frappe.ui.form.on('Purchase Order', {
+frappe.ui.form.on('Purchase Order Item', {
+	items_add: function(frm){
+    console.log('Add row clicked')
+		frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
+	},
   item_code: function (frm, cdt, cdn) {
     var d = locals[cdt][cdn]
     const set_fields = ['rate','date','supplier','purchase_order'];
@@ -30,11 +34,4 @@ frappe.ui.form.on('Purchase Order', {
       })
     }
   }
-})
-
-frappe.ui.form.on('Purchase Order Item', {
-	items_add: function(frm){
-    console.log('Add row clicked')
-		frm.set_df_property('po_itemwise_rate_details', 'hidden', 1);
-	}
 });
