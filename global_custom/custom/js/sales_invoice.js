@@ -1,4 +1,9 @@
-cur_frm.cscript.item_code = function (frm, cdt, cdn) {
+frappe.ui.form.on('Sales Invoice Item', {
+	items_add: function(frm){
+    console.log('Add row clicked')
+		frm.set_df_property('si_itemwise_rate_details', 'hidden', 1);
+	},
+  item_code: function (frm, cdt, cdn) {
     var d = locals[cdt][cdn]
     const set_fields = ['rate','date','customer','sales_invoice'];
     if(!d.item_code){
@@ -29,10 +34,4 @@ cur_frm.cscript.item_code = function (frm, cdt, cdn) {
       })
     }
   }
-
-frappe.ui.form.on('Sales Invoice Item', {
-	items_add: function(frm){
-    console.log('Add row clicked')
-		frm.set_df_property('si_itemwise_rate_details', 'hidden', 1);
-	}
 });
