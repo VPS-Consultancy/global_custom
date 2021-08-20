@@ -91,7 +91,7 @@ app_license = "MIT"
 
 doc_events = {
 	"Sales Invoice": {
-		"on_submit": "global_custom.custom.python.sales_invoice.update_si_to_dn"
+		"validate": "global_custom.custom.python.sales_invoice.update_si_to_dn"
 	}
 }
 
