@@ -38,3 +38,8 @@ def fetch_rate_details(item_code):
         if doc_count == 5:
             break
     return rate_details
+
+def update_si_to_dn(doc, action):
+    for row in doc.items:
+        if row.delivery_note:
+            frappe.db.set_value('Delivery Note Item', {'parent':row.delivery_note, 'item_code': row.item_code}, 'against_sales_invoice', doc.name)
