@@ -1,6 +1,10 @@
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 import frappe
 
+def unlink(doc,action):
+    for row in doc.items:
+        frappe.db.set_value("Sales Invoice Item",{"parent":doc.name},"delivery_note",None)
+
 def make_custom_fields(update=True):
     custom_fields = {
         "Sales Invoice": [
