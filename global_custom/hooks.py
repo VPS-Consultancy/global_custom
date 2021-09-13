@@ -93,6 +93,9 @@ doc_events = {
 	"Sales Invoice": {
 		"validate": "global_custom.custom.python.sales_invoice.update_si_to_dn"
 	},
+	"Sales Invoice": {
+		"on_cancel": "global_custom.custom.python.sales_invoice.unlink"
+	},
 	"Purchase Receipt": {
 		"validate": "global_custom.custom.python.purchase_receipt.validate_return_receipt"
 	}
