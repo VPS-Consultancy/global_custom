@@ -1,6 +1,6 @@
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 import frappe
-
+from frappe import _
 def unlink(doc,action):
     for row in doc.items:
         frappe.db.set_value("Sales Invoice Item",{"parent":doc.name},"delivery_note",None)
@@ -55,5 +55,12 @@ def uom_list(item):
 
 def update_si_to_dn(doc, action):
     for row in doc.items:
+        if row.item_code and row.uom:
+            uom_list=frappe.db.get_list('UOM Conversion Detail',{"parent":row.item_code},'uom')
+            new_uoms = []
+            for uom in uom_list:
+                new_uoms.append(uom['uom'])
+            if row.uom not in new_uoms:
+                frappe.throw(_(f"UOM {row.uom} is invalid for the item {row.item_code} in the row {row.idx}"))
         if row.delivery_note:
             frappe.db.set_value('Delivery Note Item', {'parent':row.delivery_note, 'item_code': row.item_code}, 'against_sales_invoice', doc.name)
