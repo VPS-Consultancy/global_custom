@@ -62,5 +62,3 @@ def update_si_to_dn(doc, action):
 				new_uoms.append(uom['uom'])
 			if row.uom not in new_uoms:
 				frappe.throw(_(f"UOM {row.uom} is invalid for the item {row.item_code} in the row {row.idx}"))
-		if row.delivery_note:
-			frappe.db.set_value('Delivery Note Item', {'parent':row.delivery_note, 'item_code': row.item_code}, 'against_sales_invoice', doc.name)
