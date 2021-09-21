@@ -63,7 +63,7 @@ def update_si_to_dn(doc, action):
 			if row.uom not in new_uoms:
 				frappe.throw(_(f"UOM {row.uom} is invalid for the item {row.item_code} in the row {row.idx}"))
 
-        if doc.is_return:
+		if doc.is_return:
 			is_return=frappe.db.get_value("Delivery Note",row.delivery_note,"is_return")
 			if not is_return:
 				return_dn = frappe.db.get_value("Delivery",{"return_against":row.delivery_note,"is_return":1})
