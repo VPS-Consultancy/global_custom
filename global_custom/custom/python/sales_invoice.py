@@ -66,6 +66,6 @@ def update_si_to_dn(doc, action):
 		if doc.is_return:
 			is_return=frappe.db.get_value("Delivery Note",row.delivery_note,"is_return")
 			if not is_return:
-				return_dn = frappe.db.get_value("Delivery",{"return_against":row.delivery_note,"is_return":1})
+				return_dn = frappe.db.get_value("Delivery Note",{"return_against":row.delivery_note,"is_return":1})
 				if not return_dn:
 					frappe.throw(f"Unable to proceed bacause linked delivery note {row.delivery_note} have no return delivery note")
