@@ -49,6 +49,13 @@ frappe.ui.form.on('Supplier', {
 });
 
 ```
+```
+**Note
+
+Dynalite
+Add below line to setters in delivery_note_btn:  - Sales Invoice
+posting_date: undefined
+```
 #### License
 
 MIT

@@ -35,38 +35,3 @@ frappe.ui.form.on('Sales Invoice Item', {
     }
   }
 });
-
-{% include 'erpnext/selling/sales_common.js' %};
-frappe.provide("erpnext.accounts");
-
-
-erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.extend({
-delivery_note_btn: function() {
-  var me = this;
-  this.$delivery_note_btn = this.frm.add_custom_button(__('Delivery Note'),
-    function() {
-      erpnext.utils.map_current_doc({
-        method: "erpnext.stock.doctype.delivery_note.delivery_note.make_sales_invoice",
-        source_doctype: "Delivery Note",
-        target: me.frm,
-        date_field: "posting_date",
-        setters: {
-          customer: me.frm.doc.customer || undefined,
-          posting_date: undefined
-        },
-        get_query: function() {
-          var filters = {
-            docstatus: 1,
-            company: me.frm.doc.company,
-            is_return: 0
-          };
-          if(me.frm.doc.customer) filters["customer"] = me.frm.doc.customer;
-          return {
-            query: "erpnext.controllers.queries.get_delivery_notes_to_be_billed",
-            filters: filters
-          };
-        }
-      });
-    }, __("Get Items From"));
-}
-})
