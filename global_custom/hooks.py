@@ -95,8 +95,20 @@ doc_events = {
 		"on_cancel": "global_custom.custom.python.sales_invoice.unlink"
 	},
 	"Purchase Receipt": {
-		"validate": "global_custom.custom.python.purchase_receipt.validate_return_receipt"
-	}
+		"validate":[ 
+			"global_custom.custom.python.purchase_receipt.validate_return_receipt",
+			"global_custom.custom.python.purchase_receipt.update_po_to_pr"
+		]
+	},
+	"Purchase Invoice": {
+		"validate":"global_custom.custom.python.purchase_invoice.update_pr_to_pi"
+	},
+	"Purchase Order": {
+		"validate":"global_custom.custom.python.purchase_order.update_po"
+	},
+	"Delivery Note": {
+		"validate":"global_custom.custom.python.delivery_note.update_dn"
+	},
 }
 
 # Scheduled Tasks
