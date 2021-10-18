@@ -56,6 +56,18 @@ Dynalite
 Add below line to setters in delivery_note_btn:  - Sales Invoice
 posting_date: undefined
 ```
+
+Wrap Text: Remove - frappe/frappe/public/scss/common/awesomeplete.scss
+
+```
+In li tag
+@extend .ellipsis;
+&:not(:last-child) {
+margin-bottom: var(--margin-xs);
+}
+text-overflow: ellipsis; in p tag
+```
+
 #### License
 
 MIT
