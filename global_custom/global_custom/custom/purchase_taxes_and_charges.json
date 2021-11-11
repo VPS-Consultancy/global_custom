@@ -1,0 +1,32 @@
+{
+ "custom_fields": [],
+ "custom_perms": [],
+ "doctype": "Purchase Taxes and Charges",
+ "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2021-09-21 10:19:40.799694",
+   "default_value": null,
+   "doc_type": "Purchase Taxes and Charges",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "cost_center",
+   "idx": 0,
+   "modified": "2021-09-21 10:19:40.799694",
+   "modified_by": "Administrator",
+   "name": "Purchase Taxes and Charges-cost_center-default",
+   "owner": "Administrator",
+   "parent": null,
+   "parentfield": null,
+   "parenttype": null,
+   "property": "default",
+   "property_type": "Text",
+   "row_name": null,
+   "value": "Main - DYEMEC"
+  }
+ ],
+ "sync_on_migrate": 1
+}
