@@ -95,7 +95,8 @@ doc_events = {
 		"on_cancel": "global_custom.custom.python.sales_invoice.unlink"
 	},
 	"Purchase Receipt": {
-		"validate":[ 
+		"validate":[
+			"global_custom.custom.python.delivery_note.restrict_role", 
 			"global_custom.custom.python.purchase_receipt.validate_return_receipt",
 			"global_custom.custom.python.purchase_receipt.update_po_to_pr"
 		]
@@ -107,7 +108,10 @@ doc_events = {
 		"validate":"global_custom.custom.python.purchase_order.update_po"
 	},
 	"Delivery Note": {
-		"validate":"global_custom.custom.python.delivery_note.update_dn"
+		"validate":[
+			"global_custom.custom.python.delivery_note.update_dn",
+			"global_custom.custom.python.delivery_note.restrict_role"
+		]
 	},
 }
 
