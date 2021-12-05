@@ -70,3 +70,11 @@ def update_si_to_dn(doc, action):
 					return_dn = frappe.db.get_value("Delivery Note",{"return_against":row.delivery_note,"is_return":1})
 					if not return_dn:
 						frappe.throw(f"Unable to proceed bacause linked delivery note {row.delivery_note} have no return delivery note")
+
+def restrict_role(doc, action):
+	if doc.is_return:
+		roles = frappe.get_roles()
+		restricted_role = ['Janakpandey']
+		for role in restricted_role:
+			if role in roles:
+				frappe.throw(_('Not Permitted'))

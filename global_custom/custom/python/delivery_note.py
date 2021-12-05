@@ -23,7 +23,7 @@ def update_dn(doc, action):
 def restrict_role(doc, action):
 	if doc.is_return:
 		roles = frappe.get_roles()
-		restricted_role = ['Janakpandey', 'Muntaqeem', 'Narinder']
+		restricted_role = ['Muntaqeem']
 		for role in restricted_role:
 			if role in roles:
 				frappe.throw(_('Not Permitted'))

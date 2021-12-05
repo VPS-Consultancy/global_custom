@@ -35,3 +35,11 @@ def update_po_to_pr(doc, action):
 				new_uoms.append(uom['uom'])
 			if row.uom not in new_uoms:
 				frappe.throw((f"UOM {row.uom} is invalid for the item {row.item_code} in the row {row.idx}"))
+
+def restrict_role(doc, action):
+	if doc.is_return:
+		roles = frappe.get_roles()
+		restricted_role = ['Muntaqeem']
+		for role in restricted_role:
+			if role in roles:
+				frappe.throw(_('Not Permitted'))

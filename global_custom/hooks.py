@@ -91,18 +91,25 @@ app_license = "MIT"
 
 doc_events = {
 	"Sales Invoice": {
-		"validate": "global_custom.custom.python.sales_invoice.update_si_to_dn",
+		"validate": [
+			"global_custom.custom.python.sales_invoice.update_si_to_dn",
+			"global_custom.custom.python.sales_invoice.restrict_role"
+		],
 		"on_cancel": "global_custom.custom.python.sales_invoice.unlink"
 	},
 	"Purchase Receipt": {
 		"validate":[
-			"global_custom.custom.python.delivery_note.restrict_role", 
 			"global_custom.custom.python.purchase_receipt.validate_return_receipt",
-			"global_custom.custom.python.purchase_receipt.update_po_to_pr"
+			"global_custom.custom.python.purchase_receipt.update_po_to_pr",
+			"global_custom.custom.python.purchase_receipt.restrict_role"
 		]
 	},
 	"Purchase Invoice": {
-		"validate":"global_custom.custom.python.purchase_invoice.update_pr_to_pi"
+		"validate":[
+			"global_custom.custom.python.purchase_invoice.update_pr_to_pi",
+			"global_custom.custom.python.purchase_invoice.restrict_role"
+		]
+
 	},
 	"Purchase Order": {
 		"validate":"global_custom.custom.python.purchase_order.update_po"
