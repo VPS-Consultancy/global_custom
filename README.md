@@ -67,6 +67,12 @@ margin-bottom: var(--margin-xs);
 }
 text-overflow: ellipsis; in p tag
 ```
+In Purchase Invoice - Get Items From - Purchase Receipt - Popup - Add supplier delivery note field by editing purchase_invoice.js
+Purchase Receipt button's setters function
+
+``` 
+supplier_delivery_note: undefined
+```
 
 #### License
 
