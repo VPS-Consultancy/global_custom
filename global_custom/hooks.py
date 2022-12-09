@@ -199,7 +199,8 @@ user_data_fields = [
 # ]
 doctype_js = {
     "Purchase Order": "custom/js/purchase_order.js",
-	"Sales Invoice": "custom/js/sales_invoice.js"
+	"Sales Invoice": "custom/js/sales_invoice.js",
+	"Sales Order": 'custom/js/sales_order.js'
 
 }
 after_install = "global_custom.custom.python.purchase_order.make_custom_fields",
